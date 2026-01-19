@@ -1,6 +1,6 @@
 {
   "name": "go-reactor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript harness for Go WASI reactor binaries",
   "author": "Aperture Robotics",
   "license": "MIT",
