@@ -4,6 +4,7 @@
 
 ## Related Projects
 
+- [paralin/go (wasi-reactor branch)](https://github.com/paralin/go/tree/wasi-reactor) - Modified Go runtime with WASI reactor support
 - [js-quickjs-wasi-reactor](https://github.com/aperturerobotics/js-quickjs-wasi-reactor) - JavaScript harness for QuickJS WASI reactor
 - [go-quickjs-wasi-reactor](https://github.com/aperturerobotics/go-quickjs-wasi-reactor) - Go harness for QuickJS WASI reactor
 
@@ -98,12 +99,12 @@ for {
 }
 ```
 
-### JavaScript/TypeScript Harness (`js-harness/`)
+### JavaScript/TypeScript Harness (`src/`)
 
 For browser and Node.js/Bun environments:
 
 ```typescript
-import { createReactor, createMinimalWASI } from "@aspect/golang-reactor";
+import { createReactor, createMinimalWASI } from "go-reactor";
 
 const wasmBytes = await fetch("program.wasm").then(r => r.arrayBuffer());
 const wasmModule = await WebAssembly.compile(wasmBytes);
@@ -161,7 +162,27 @@ For full filesystem and network support, use a complete WASI implementation.
 
 ## Building Go Programs
 
-Go programs must be built with the modified Go runtime that exports reactor functions:
+Go programs must be built with the [modified Go runtime](https://github.com/paralin/go/tree/wasi-reactor)
+that exports reactor functions.
+
+### Installing the Modified Go Toolchain
+
+```bash
+# Clone the fork
+git clone -b wasi-reactor https://github.com/paralin/go.git go-wasi-reactor
+cd go-wasi-reactor/src
+
+# Build the toolchain
+./make.bash
+
+# The built toolchain is at ../bin/go
+export PATH="$(pwd)/../bin:$PATH"
+
+# Verify
+go version
+```
+
+### Compiling a WASI Reactor
 
 ```bash
 # Build as WASI reactor
@@ -192,8 +213,9 @@ func main() {
 # Go harness
 cd wazero-go && go test ./...
 
-# JS harness (requires bun)
-cd js-harness && bun test.ts /path/to/reactor.wasm
+# JS harness
+bun install
+bun run test
 ```
 
 ## License

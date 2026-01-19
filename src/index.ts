@@ -196,7 +196,6 @@ export class Reactor {
 /**
  * Minimal WASI implementation for Go reactors.
  * This provides just enough WASI to run basic Go programs.
- * For full WASI support, use a proper WASI implementation like @aspect/browser-wasi-shim.
  */
 export function createMinimalWASI(options: {
   args?: string[];
