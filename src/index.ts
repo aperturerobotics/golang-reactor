@@ -140,11 +140,11 @@ export class Reactor {
         return;
       }
 
-      if (result > 0) {
+      if ((result as number) > 0) {
         // Timer pending - in sync mode, we can't wait properly
         // This will spin-wait which is not ideal
         const start = Date.now();
-        while (Date.now() - start < result) {
+        while (Date.now() - start < (result as number)) {
           // Busy wait - not recommended for real use
         }
       }
@@ -178,9 +178,9 @@ export class Reactor {
         continue;
       }
 
-      if (result > 0) {
+      if ((result as number) > 0) {
         // Wait for timer
-        await wait(result);
+        await wait(result as number);
       }
     }
   }
