@@ -1,6 +1,21 @@
-# golang-reactor
+# go-reactor
+
+[![npm](https://img.shields.io/npm/v/go-reactor)](https://www.npmjs.com/package/go-reactor)
 
 > Host harnesses for Go WASI reactor binaries with cooperative scheduling.
+
+## Installation
+
+```bash
+# npm
+npm install go-reactor
+
+# bun
+bun add go-reactor
+
+# yarn
+yarn add go-reactor
+```
 
 ## Related Projects
 
@@ -99,7 +114,7 @@ for {
 }
 ```
 
-### JavaScript/TypeScript Harness (`src/`)
+### JavaScript/TypeScript Harness (npm: `go-reactor`)
 
 For browser and Node.js/Bun environments:
 
